@@ -31,11 +31,11 @@ public class ReaderWriterPubSub : AbstractPubSub
                  tasks.Add(task);
              }
          }
-         
+         _readerWriterLockSemaphore.ReleaseWriterLock();
+
          // 3. complete all tasks in parallel
          await Task.WhenAll(tasks);
          
-         _readerWriterLockSemaphore.ReleaseWriterLock();
     }
 
     public override void Subscribe(Subscriber subscriber)

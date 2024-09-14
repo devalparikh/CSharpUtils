@@ -29,7 +29,7 @@ public class Publisher
         Name = name;
     }
     
-    public async void Publish(AbstractPubSub pubSub, Message message)
+    public async Task Publish(AbstractPubSub pubSub, Message message)
     {
         message.Sender = this;
         Console.WriteLine($"Publisher@{Name} sent a message: {message.Content}");

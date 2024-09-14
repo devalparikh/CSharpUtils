@@ -2,9 +2,9 @@
 
 using EventDriven;
 
-var topic1 = new PubSub();
+// var topic1 = new PubSub();
 // TODO: debug ReaderWriterPubSub and ReaderWriterLockSemaphore
-// var topic1 = new ReaderWriterPubSub();
+var topic1 = new ReaderWriterPubSub();
 
 var publisher1 = new Publisher("1");
 var publisher2 = new Publisher("2");
@@ -16,5 +16,5 @@ topic1.Subscribe(subscriber1);
 topic1.Subscribe(subscriber2);
 topic1.Subscribe(subscriber3);
 
-publisher1.Publish(topic1, new Message("hi there"));
-publisher2.Publish(topic1, new Message("hi there as well"));
+await publisher1.Publish(topic1, new Message("hi there"));
+await publisher2.Publish(topic1, new Message("hi there as well"));
