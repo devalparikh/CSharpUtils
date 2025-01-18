@@ -1,3 +1,4 @@
+using EventDriven.Common;
 using Synchronization;
 
 namespace EventDriven;
@@ -36,13 +37,5 @@ public class ReaderWriterPubSub : AbstractPubSub
          // 3. complete all tasks in parallel
          await Task.WhenAll(tasks);
          
-    }
-
-    public override void Subscribe(Subscriber subscriber)
-    {
-        lock (_subscribers)
-        {
-            _subscribers.Add(subscriber);
-        }
     }
 }

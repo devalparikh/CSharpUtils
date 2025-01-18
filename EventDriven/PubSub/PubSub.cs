@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using EventDriven.Common;
 
 namespace EventDriven;
 
@@ -28,13 +29,5 @@ public class PubSub : AbstractPubSub
          
          // 3. complete all tasks in parallel
          await Task.WhenAll(tasks);
-    }
-
-    public override void Subscribe(Subscriber subscriber)
-    {
-        lock (_subscribers)
-        {
-            _subscribers.Add(subscriber);
-        }
     }
 }

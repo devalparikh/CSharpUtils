@@ -11,7 +11,9 @@ namespace Synchronization;
 // A writer can not acquire if a reader currently holds a lock
 public class ReaderWriterLockSemaphore : IReaderWriterLock
 {
+    // Used to synchronize _readerCount
     private SemaphoreSlim _readerSemaphore = new SemaphoreSlim(1,1);
+    // Used to enforce reader writer lock
     private SemaphoreSlim _writerSemaphore = new SemaphoreSlim(1, 1);
 
     private int _readerCount;
@@ -21,7 +23,7 @@ public class ReaderWriterLockSemaphore : IReaderWriterLock
         await _readerSemaphore.WaitAsync();
 
         _readerCount++;
-        bool isFirstReader = _readerCount == 1; 
+        bool isFirstReader = _readerCount == 1;
         if (isFirstReader)
         {
             // For the first reader, wait on the writer to be released 
